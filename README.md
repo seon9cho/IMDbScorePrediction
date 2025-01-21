@@ -122,34 +122,85 @@ This procedure is made extremely easy by using the Scipy package `scipy.stats.no
 </div>
 
 
-
-\begingroup
-\setlength{\tabcolsep}{2pt} % Default value: 6pt
-\begin{table*}
-    \centering
-    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
-        \hline
-         & \multicolumn{4}{|c|}{Initial} & \multicolumn{4}{|c|}{Final} \\
-        \hline
-         & All & No PR & No nominal & Only nominal & All & No PR & No nominal & Only nominal \\
-        \hline
-        Baseline & 0.819 & 0.819 & 0.819 & 0.819 & 0.819 & 0.819 & 0.819 & 0.819 \\
-        \hline
-        LR & 0.563 & 0.645 & 0.638 & 0.717 & \textbf{0.507} & 0.654  & 0.573 & 0.717 \\
-        \hline
-        MLP & 0.689 & 0.708 & 0.788 & 0.764 & \textbf{0.520} & 0.672 & 0.595 & 0.750 \\
-        \hline
-        RF & \textbf{0.480} & \textbf{0.555} & \textbf{0.519} & \textbf{0.736} & \textbf{\textit{0.479}} & \textbf{0.554} & \textbf{0.512} & \textbf{0.716} \\
-        \hline
-        KNR & 0.660 & 0.697 & 0.623 & 0.741 & \textbf{0.561} & 0.686 & 0.569 & 0.743 \\
-        \hline
+<table align="center" >
+    <thead>
+        <tr>
+            <th></th>
+            <th colspan="4">Initial</th>
+            <th colspan="4">Final</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td></td>
+            <td>All</td>
+            <td>No PR</td>
+            <td>No nominal</td>
+            <td>Only nominal</td>
+            <td>All</td>
+            <td>No PR</td>
+            <td>No nominal</td>
+            <td>Only nominal</td>
+        </tr>
+        <tr>
+            <td>Baseline</td>
+            <td>0.819</td>
+            <td>0.819</td>
+            <td>0.819</td>
+            <td>0.819</td>
+            <td>0.819</td>
+            <td>0.819</td>
+            <td>0.819</td>
+            <td>0.819</td>
+        </tr>
+        <tr>
+            <td>LR</td>
+            <td>0.563</td>
+            <td>0.645</td>
+            <td>0.638</td>
+            <td>0.717</td>
+            <td><b>0.507</b></td>
+            <td>0.654 </td>
+            <td>0.573</td>
+            <td>0.717</td>
+        </tr>
+        <tr>
+            <td>MLP</td>
+            <td>0.689</td>
+            <td>0.708</td>
+            <td>0.788</td>
+            <td>0.764</td>
+            <td><b>0.520</b></td>
+            <td>0.672</td>
+            <td>0.595</td>
+            <td>0.750</td>
+        </tr>
+        <tr>
+            <td>RF</td>
+            <td><b>0.480</b></td>
+            <td><b>0.555</b></td>
+            <td><b>0.519</b></td>
+            <td><b>0.736</b></td>
+            <td><b><i>0.479</i></b></td>
+            <td><b>0.554<b></td>
+            <td><b>0.512<b></td>
+            <td><b>0.716<b></td>
+        </tr>
+        <tr>
+            <td>KNR</td>
+            <td>0.660</td>
+            <td>0.697</td>
+            <td>0.623</td>
+            <td>0.741</td>
+            <td><b>0.561</b></td>
+            <td>0.686</td>
+            <td>0.569</td>
+            <td>0.743</td>
+        </tr>
+    </tbody>
+</table>
         
-    \end{tabular} \linebreak \linebreak
-    \caption{The table is divided into 8 columns. “Initial” columns are for those done on the dataset where values were only normalized between 0 and 1. “Final” columns are done on our fully engineered dataset. “All" columns are those that include all of the features including the 5 features only available after a movie’s release, while “No PR” columns do not include those features.} 
-    
-    \label{tab:results}
-\end{table*}
-\endgroup
+Table 2: The table is divided into 8 columns. “Initial” columns are for those done on the dataset where values were only normalized between 0 and 1. “Final” columns are done on our fully engineered dataset. “All" columns are those that include all of the features including the 5 features only available after a movie’s release, while “No PR” columns do not include those features.
 
 For the nominal features, we broke up their different possible values into separate columns and encoded each instance as a 1 or a 0 for those columns. For example, a given movie could have “action | adventure | drama” as its original “genre” feature, so in our reworked data, it would have a 1 in the action, adventure, and drama columns and a 0 in the other genre columns. A simple one-hot encoding was done for “rating,” since a movie can only have a single rating (e.g. G, PG, PG-13, or R). 
 
@@ -160,9 +211,11 @@ One of the goals of our experiments was to find out how different features and f
 ### Linear Regression
 
 Linear Regression works best for problems of linear nature. The goal of linear regression is to find a line that can best fit the datapoints with respect to the output values. The objective of the linear regression can be summarized as:
+
 $$
-\text{minimize}_{\beta} ||y - X \beta|| 
+\text{minimize}_{\beta} \lVert y - X \beta \lVert
 $$
+
 where the $y$ is the output labels and $X$ is the input features. The default hyperparameters were used for this model.
 
 ### Multilayer Perceptron
